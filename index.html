@@ -1,61 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <title>Ficha de RPG</title>
+    <link rel="stylesheet" href="sttyle.css">
 </head>
 <body>
-    <h1>Adicionar Dados ao Firestore</h1>
-    <form id="meuFormulario">
+    <h1>Ficha de RPG</h1>
+    <form>
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
+        <input type="text" id="nome" name="nome" required><br><br>
+        
         <label for="idade">Idade:</label>
-        <input type="number" id="idade" name="idade" required>
-        <button type="submit">Salvar</button>
+        <input type="number" id="idade" name="idade" required><br><br>
+        
+        <label for="habilidades">Habilidades:</label><br>
+        <textarea id="habilidades" name="habilidades" rows="4" cols="50" required></textarea><br><br>
+        
+        <label for="rituais">Rituais:</label><br>
+        <textarea id="rituais" name="rituais" rows="4" cols="50"></textarea><br><br>
+        
+        <label for="itens">Itens:</label><br>
+        <textarea id="itens" name="itens" rows="4" cols="50"></textarea><br><br>
+        
+        <label for="historia">História:</label><br>
+        <textarea id="historia" name="historia" rows="6" cols="50" required></textarea><br><br>
+        
+        <input type="submit" value="Enviar">
     </form>
-
-    <!-- Adicione a biblioteca do Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>;
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>;
-
-    <script>
-        // Configurar as credenciais do Firebase
-        var firebaseConfig = {
-            apiKey: "AIzaSyAnNt9YlofM4Eu6yz6LS88-ZdwcOU7YDTE",
-            authDomain: "musica-20253.firebaseapp.com",
-            projectId: "musica-20253",
-        };
-        // Inicializar o Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        // Referenciar o Firestore
-        var db = firebase.firestore();
-
-        // Capturar o formulário e salvar dados no Firestore ao enviá-lo
-        document.getElementById("meuFormulario").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            var nome = document.getElementById("nome").value;
-            var idade = document.getElementById("idade").value;
-
-            // Salvar os dados na coleção "usuarios"
-            db.collection("usuarios").add({
-                nome: nome,
-                idade: idade
-            })
-                .then(function (docRef) {
-                    console.log("Dados salvos com ID: ", docRef.id);
-                    alert("Dados salvos com sucesso!");
-                    // Limpar os campos do formulário após salvar os dados
-                    document.getElementById("meuFormulario").reset();
-                })
-                .catch(function (error) {
-                    console.error("Erro ao salvar dados: ", error);
-                    alert("Ocorreu um erro ao salvar os dados. Por favor, tente novamente.");
-                });
-        });
-    </script>
 </body>
-</html>
